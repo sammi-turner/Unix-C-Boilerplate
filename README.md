@@ -69,5 +69,3 @@ After building the project, you can run the executable by executing the followin
 ​```
 
 <br>
-
--D_XOPEN_SOURCE=700
