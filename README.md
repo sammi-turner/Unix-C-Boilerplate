@@ -1,6 +1,6 @@
 <br>
 
-# Project Template
+# Unix C Project Template
 
 <br>
 
