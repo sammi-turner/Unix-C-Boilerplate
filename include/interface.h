@@ -30,35 +30,36 @@
 
 /* list.c */
 
-typedef struct List {
-    char** list;
-    int size;
-} List;
-
-List* init_list(const char** str_array);
-void free_list(List* l);
-int add_item(List* l, const char* s);
-int update_item(List* l, const char* s, int i);
-int insert_item(List* l, const char* s, int n);
-int swap_items(List* l, int i, int j);
-int delete_item(List* l, int n);
-void print_list(List* l);
-char* get_item(List* l, int n);
-
-/* dstring.c */
-
-typedef struct Dstring
+typedef struct Wide_String_List 
 {
-    char* data;
+    wchar_t** list;
     int size;
-} Dstring;
+} Wide_String_List;
 
-Dstring* init_dstring(const char* str);
-void free_dstring(Dstring* ds);
-void append_to_dstring(Dstring* ds, const char* str);
-void prepend_to_dstring(Dstring* ds, const char* str);
-void replace_dstring(Dstring* ds, const char* new_data);
-void substitute_in_dstring(Dstring* ds, const char* old_substr, const char* new_substr);
+Wide_String_List* init_list(const wchar_t** ws_array);
+void free_list(Wide_String_List* wl);
+int add_item(Wide_String_List* wl, const wchar_t* ws);
+int update_item(Wide_String_List* wl, const wchar_t* ws, int i);
+int insert_item(Wide_String_List* wl, const wchar_t* ws, int n);
+int swap_items(Wide_String_List* wl, int i, int j);
+int delete_item(Wide_String_List* wl, int n);
+void print_list(Wide_String_List* wl);
+char* get_item(Wide_String_List* wl, int n);
+
+/* dwstring.c */
+
+typedef struct Dynamic_Wide_String
+{
+    wchar_t* data;
+    int size;
+} Dynamic_Wide_String;
+
+Dynamic_Wide_String* init_dwstring(const wchar_t* ws);
+void free_dwstring(Dynamic_Wide_String* dws);
+void append_to_dwstring(Dynamic_Wide_String* dws, const wchar_t* ws);
+void prepend_to_dwstring(Dynamic_Wide_String* dws, const wchar_t* ws);
+void replace_dwstring(Dynamic_Wide_String* dws, const wchar_t* ws);
+void substitute_in_dwstring(Dynamic_Wide_String* ds, const wchar_t* old_ws, const wchar_t* new_ws);
 
 /* terminal.c */
 
@@ -66,8 +67,8 @@ void enable_single_character_input();
 void restore_normal_input();
 void hide_console_cursor();
 void show_console_cursor();
-void render_menu(const char** menu, const int size, const int count);
-int select_option(const char** menu, const int size);
+void render_menu(const wchar_t *const menu[], int size, int count);
+int select_option(const wchar_t *const menu[], int size);
 char* edit_prompt(const char* prompt, const char* buffer, size_t max);
 
 /* files.c */

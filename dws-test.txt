@@ -1,5 +1,3 @@
-#include "interface.h"
-
 void print_dwstring(Dynamic_Wide_String* dws) 
 {
     wprintf(L"String: %ls\n", dws->data);

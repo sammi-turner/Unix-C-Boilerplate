@@ -1,8 +1,11 @@
 # Compiler to use
-CXX = gcc
+CC = gcc
 
 # Compiler flags
-CXXFLAGS = -Iinclude -Wall -Wextra
+CFLAGS = -Iinclude -Wall -Wextra -std=c11
+
+# Linker flags
+LDFLAGS = -liconv
 
 # Target executable name
 TARGET = main
@@ -18,11 +21,11 @@ OBJS = $(patsubst $(SRC_DIR)/%.c, $(BIN_DIR)/%.o, $(SRCS))
 
 # Rule for building the target
 $(TARGET): $(OBJS)
-	$(CXX) $^ $(CXXFLAGS) -lm -o $@
+	$(CC) $^ $(CFLAGS) $(LDFLAGS) -lm -o $@
 
 # Rule for generating object files
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean up
 clean:

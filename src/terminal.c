@@ -31,37 +31,38 @@ void show_console_cursor()
     fflush(stdout);
 }
 
-void render_menu(const char** menu, const int size, const int count) 
+void render_menu(const wchar_t *const menu[], int size, int count)
 {
+    setlocale(LC_ALL, "");
     system("clear");
-    printf("\n    %s\n\n", menu[0]);
+    wprintf(L"\n    %ls\n\n", menu[0]);
     for (int i = 1; i < size; i++) 
     {
         if (i == count) 
         {
-            printf("  > %s\n", menu[i]);
+            wprintf(L"  > %ls\n", menu[i]);
         } 
         else 
         {
-            printf("    %s\n", menu[i]);
+            wprintf(L"    %ls\n", menu[i]);
         }
     }
-    printf("\n");
+    wprintf(L"\n");
 }
 
-int select_option(const char** menu, const int size) 
+int select_option(const wchar_t *const menu[], int size)
 {
     enable_single_character_input();
     hide_console_cursor();
     int value = 1;
     int ch;
     render_menu(menu, size, value);
-    while ((ch = getchar()) != '\n') 
+    while ((ch = getwchar()) != L'\n')
     {
         if (ch == 27) 
         {
-            getchar();
-            switch (getchar()) 
+            getwchar();
+            switch (getwchar()) 
             {
                 case 'A':
                     value--;
@@ -82,12 +83,12 @@ int select_option(const char** menu, const int size)
             }
         }
     }
+    show_console_cursor();
     return value;
 }
 
 char* edit_prompt(const char* prompt, const char* buffer, size_t max) 
 {
-    show_console_cursor();
     printf("%s", prompt);
     if (strlen(prompt) != 0) 
     {
@@ -158,6 +159,5 @@ char* edit_prompt(const char* prompt, const char* buffer, size_t max)
     }
     tcsetattr(STDIN_FILENO, TCSANOW, &oldSettings);
     printf("\n");
-    hide_console_cursor();
     return s;
 }

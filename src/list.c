@@ -2,133 +2,123 @@
 
 /* List data type */
 
-List* init_list(const char** str_array) 
+Wide_String_List* init_list(const wchar_t** ws_array) 
 {
-    List* list = (List*)malloc(sizeof(List));
-    if (list == NULL) 
+    Wide_String_List* wl = (Wide_String_List*)malloc(sizeof(Wide_String_List));
+    wl->size = 0;
+    wl->list = NULL;
+    if (ws_array != NULL) 
     {
-        fprintf(stderr, "Memory allocation failed.\n");
-        return NULL;
-    }
-
-    int size = 0;
-    while (str_array[size] != NULL) 
-    {
-        size++;
-    }
-
-    list->list = (char**)malloc((size + 1) * sizeof(char*));
-    if (list->list == NULL) {
-        fprintf(stderr, "Memory allocation failed.\n");
-        free(list);
-        return NULL;
-    }
-
-    for (int i = 0; i < size; i++) {
-        list->list[i] = strdup(str_array[i]);
-        if (list->list[i] == NULL) {
-            fprintf(stderr, "Memory allocation failed.\n");
-            for (int j = 0; j < i; j++) {
-                free(list->list[j]);
-            }
-            free(list->list);
-            free(list);
-            return NULL;
+        int count = 0;
+        while (ws_array[count] != NULL)
+        {
+            count++;
         }
+        wl->list = (wchar_t**)malloc(count * sizeof(wchar_t*));
+        for (int i = 0; i < count; i++) 
+        {
+            wl->list[i] = wcsdup(ws_array[i]);
+        }
+        wl->size = count;
     }
-    list->list[size] = NULL;
-    list->size = size;
-
-    return list;
+    return wl;
 }
 
-void free_list(List* l)
+void free_list(Wide_String_List* wl) 
 {
-    for (int i = 0; i < l->size; i++) 
+    if (wl == NULL)
     {
-        free(l->list[i]);
+        return;
     }
-    free(l->list);
+    for (int i = 0; i < wl->size; i++) 
+    {
+        free(wl->list[i]);
+    }
+    free(wl->list);
+    free(wl);
 }
 
-int add_item(List* l, const char* s) 
+int add_item(Wide_String_List* wl, const wchar_t* ws) 
 {
-    l->size++;
-    l->list = realloc(l->list, l->size * sizeof(char*));
-    if (l->list == NULL) 
+    if (wl == NULL || ws == NULL)
     {
         return -1;
     }
-    l->list[l->size - 1] = strdup(s);
+    wl->list = (wchar_t**)realloc(wl->list, (wl->size + 1) * sizeof(wchar_t*));
+    wl->list[wl->size] = wcsdup(ws);
+    wl->size++;
+    return wl->size - 1;
+}
+
+int update_item(Wide_String_List* wl, const wchar_t* ws, int i) 
+{
+    if (wl == NULL || ws == NULL || i < 0 || i >= wl->size)
+    {
+        return -1;
+    }
+    free(wl->list[i]);
+    wl->list[i] = wcsdup(ws);
+    return i;
+}
+
+int insert_item(Wide_String_List* wl, const wchar_t* ws, int n) 
+{
+    if (wl == NULL || ws == NULL || n < 0 || n > wl->size)
+    {
+        return -1;
+    }
+    wl->list = (wchar_t**)realloc(wl->list, (wl->size + 1) * sizeof(wchar_t*));
+    memmove(&wl->list[n + 1], &wl->list[n], (wl->size - n) * sizeof(wchar_t*));
+    wl->list[n] = wcsdup(ws);
+    wl->size++;
+    return n;
+}
+
+int swap_items(Wide_String_List* wl, int i, int j) 
+{
+    if (wl == NULL || i < 0 || i >= wl->size || j < 0 || j >= wl->size)
+    {
+        return -1;
+    }
+    wchar_t* temp = wl->list[i];
+    wl->list[i] = wl->list[j];
+    wl->list[j] = temp;
     return 0;
 }
 
-int update_item(List* l, const char* s, int i) 
+int delete_item(Wide_String_List* wl, int n) 
 {
-    if (i < 0 || i >= l->size) 
+    if (wl == NULL || n < 0 || n >= wl->size)
     {
         return -1;
     }
-    free(l->list[i]);
-    l->list[i] = strdup(s);
+    free(wl->list[n]);
+    memmove(&wl->list[n], &wl->list[n + 1], (wl->size - n - 1) * sizeof(wchar_t*));
+    wl->size--;
     return 0;
 }
 
-int insert_item(List* l, const char* s, int n) 
+void print_list(Wide_String_List* wl) 
 {
-    if (n < 0 || n > l->size) 
+    setlocale(LC_ALL, "");
+    if (wl == NULL)
     {
-        return -1;
+        return;
     }
-    l->size++;
-    l->list = realloc(l->list, l->size * sizeof(char*));
-    if (l->list == NULL) 
+    for (int i = 0; i < wl->size; i++) 
     {
-        return -1;
-    }
-    memmove(&l->list[n + 1], &l->list[n], (l->size - n - 1) * sizeof(char*));
-    l->list[n] = strdup(s);
-    return 0;
-}
-
-int swap_items(List* l, int i, int j) 
-{
-    if (i < 0 || i >= l->size || j < 0 || j >= l->size) 
-    {
-        return -1;
-    }
-    char* temp = l->list[i];
-    l->list[i] = l->list[j];
-    l->list[j] = temp;
-    return 0;
-}
-
-int delete_item(List* l, int n) 
-{
-    if (n < 0 || n >= l->size) 
-    {
-        return -1;
-    }
-    free(l->list[n]);
-    memmove(&l->list[n], &l->list[n + 1], (l->size - n - 1) * sizeof(char*));
-    l->size--;
-    l->list = realloc(l->list, l->size * sizeof(char*));
-    return 0;
-}
-
-void print_list(List* l) 
-{
-    for (int i = 0; i < l->size; i++) 
-    {
-        printf("%s\n", l->list[i]);
+        wprintf(L"%ls\n", wl->list[i]);
     }
 }
 
-char* get_item(List* l, int n) 
+char* get_item(Wide_String_List* wl, int n) 
 {
-    if (n < 0 || n >= l->size) 
+    if (wl == NULL || n < 0 || n >= wl->size)
     {
-        return "\0";
+        return NULL;
     }
-    return l->list[n];
+    int size = wcstombs(NULL, wl->list[n], 0);
+    char* result = (char*)malloc((size + 1) * sizeof(char));
+    wcstombs(result, wl->list[n], size + 1);
+    return result;
 }

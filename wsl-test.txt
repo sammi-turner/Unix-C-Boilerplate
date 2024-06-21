@@ -1,0 +1,54 @@
+int main() 
+{
+    // Initialize a wide character string array
+    const wchar_t* hello[] = 
+    {
+        L"Hello",
+        L"世界",
+        L"안녕하세요",
+        L"Привет",
+        NULL
+    };
+
+    // Create a new Wide_String_List
+    Wide_String_List* wl = init_list(hello);
+
+    // Print the initial list
+    printf("Initial list:\n");
+    print_list(wl);
+
+    // Add a new item
+    add_item(wl, L"Bonjour");
+    printf("\nAfter adding an item:\n");
+    print_list(wl);
+
+    // Update an item
+    update_item(wl, L"Updated", 1);
+    printf("\nAfter updating an item:\n");
+    print_list(wl);
+
+    // Insert an item
+    insert_item(wl, L"Inserted", 2);
+    printf("\nAfter inserting an item:\n");
+    print_list(wl);
+
+    // Swap items
+    swap_items(wl, 0, 3);
+    printf("\nAfter swapping items:\n");
+    print_list(wl);
+
+    // Delete an item
+    delete_item(wl, 1);
+    printf("\nAfter deleting an item:\n");
+    print_list(wl);
+
+    // Get an item
+    char* item = get_item(wl, 2);
+    printf("\nRetrieved item: %s\n", item);
+    free(item);
+
+    // Free the Wide_String_List
+    free_list(wl);
+
+    return 0;
+}

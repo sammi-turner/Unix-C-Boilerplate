@@ -18,7 +18,7 @@ The project has the following directory structure:
   - `interface.h`: single header file for the project.
 - `src/`: contains source files (`.c`) that implement the functionality of the project.
   - `main.c`: the main source file of the project, which contains the `main()` function.
-  - `dstring.c`: functions that use the dynamic string data type.
+  - `dwstring.c`: functions that use the dynamic string data type.
   - `list.c`: functions that use the dynamic list data type.
   - `files.c`: functions handling file I/O.
   - `terminal.c`: functions handling terminal I/O.
@@ -69,3 +69,5 @@ After building the project, you can run the executable by executing the followin
 ​```
 
 <br>
+
+-D_XOPEN_SOURCE=700
