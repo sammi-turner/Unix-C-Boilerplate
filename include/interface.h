@@ -50,7 +50,7 @@ char* get_item(Wchar_Array_List *wal, size_t n);
 
 typedef struct Dynamic_Wchar_Array
 {
-    wchar_t* data;
+    wchar_t *data;
     size_t size;
 } Dynamic_Wchar_Array;
 
