@@ -6,7 +6,7 @@
 
 ## Overview
 
-This is a C project template for Unix-based systems. It provides a basic structure and configuration for building C projects using a Makefile.
+This is a C project template for unix systems. It provides a basic structure and configuration for building C projects using a Makefile.
 
 <br>
 
