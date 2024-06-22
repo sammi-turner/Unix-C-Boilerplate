@@ -2,123 +2,123 @@
 
 /* List data type */
 
-Wide_String_List* init_list(const wchar_t** ws_array) 
+Wchar_Array_List* init_list(const wchar_t** waa) 
 {
-    Wide_String_List* wl = (Wide_String_List*)malloc(sizeof(Wide_String_List));
-    wl->size = 0;
-    wl->list = NULL;
-    if (ws_array != NULL) 
+    Wchar_Array_List* wal = (Wchar_Array_List*)malloc(sizeof(Wchar_Array_List));
+    wal->size = 0;
+    wal->list = NULL;
+    if (waa != NULL) 
     {
         int count = 0;
-        while (ws_array[count] != NULL)
+        while (waa[count] != NULL)
         {
             count++;
         }
-        wl->list = (wchar_t**)malloc(count * sizeof(wchar_t*));
+        wal->list = (wchar_t**)malloc(count * sizeof(wchar_t*));
         for (int i = 0; i < count; i++) 
         {
-            wl->list[i] = wcsdup(ws_array[i]);
+            wal->list[i] = wcsdup(waa[i]);
         }
-        wl->size = count;
+        wal->size = count;
     }
-    return wl;
+    return wal;
 }
 
-void free_list(Wide_String_List* wl) 
+void free_list(Wchar_Array_List* wal) 
 {
-    if (wl == NULL)
+    if (wal == NULL)
     {
         return;
     }
-    for (int i = 0; i < wl->size; i++) 
+    for (int i = 0; i < wal->size; i++) 
     {
-        free(wl->list[i]);
+        free(wal->list[i]);
     }
-    free(wl->list);
-    free(wl);
+    free(wal->list);
+    free(wal);
 }
 
-int add_item(Wide_String_List* wl, const wchar_t* ws) 
+int add_item(Wchar_Array_List* wal, const wchar_t* wa) 
 {
-    if (wl == NULL || ws == NULL)
+    if (wal == NULL || wa == NULL)
     {
         return -1;
     }
-    wl->list = (wchar_t**)realloc(wl->list, (wl->size + 1) * sizeof(wchar_t*));
-    wl->list[wl->size] = wcsdup(ws);
-    wl->size++;
-    return wl->size - 1;
+    wal->list = (wchar_t**)realloc(wal->list, (wal->size + 1) * sizeof(wchar_t*));
+    wal->list[wal->size] = wcsdup(wa);
+    wal->size++;
+    return wal->size - 1;
 }
 
-int update_item(Wide_String_List* wl, const wchar_t* ws, int i) 
+int update_item(Wchar_Array_List* wal, const wchar_t* wa, int i) 
 {
-    if (wl == NULL || ws == NULL || i < 0 || i >= wl->size)
+    if (wal == NULL || wa == NULL || i < 0 || i >= wal->size)
     {
         return -1;
     }
-    free(wl->list[i]);
-    wl->list[i] = wcsdup(ws);
+    free(wal->list[i]);
+    wal->list[i] = wcsdup(wa);
     return i;
 }
 
-int insert_item(Wide_String_List* wl, const wchar_t* ws, int n) 
+int insert_item(Wchar_Array_List* wal, const wchar_t* wa, int n) 
 {
-    if (wl == NULL || ws == NULL || n < 0 || n > wl->size)
+    if (wal == NULL || wa == NULL || n < 0 || n > wal->size)
     {
         return -1;
     }
-    wl->list = (wchar_t**)realloc(wl->list, (wl->size + 1) * sizeof(wchar_t*));
-    memmove(&wl->list[n + 1], &wl->list[n], (wl->size - n) * sizeof(wchar_t*));
-    wl->list[n] = wcsdup(ws);
-    wl->size++;
+    wal->list = (wchar_t**)realloc(wal->list, (wal->size + 1) * sizeof(wchar_t*));
+    memmove(&wal->list[n + 1], &wal->list[n], (wal->size - n) * sizeof(wchar_t*));
+    wal->list[n] = wcsdup(wa);
+    wal->size++;
     return n;
 }
 
-int swap_items(Wide_String_List* wl, int i, int j) 
+int swap_items(Wchar_Array_List* wal, int i, int j) 
 {
-    if (wl == NULL || i < 0 || i >= wl->size || j < 0 || j >= wl->size)
+    if (wal == NULL || i < 0 || i >= wal->size || j < 0 || j >= wal->size)
     {
         return -1;
     }
-    wchar_t* temp = wl->list[i];
-    wl->list[i] = wl->list[j];
-    wl->list[j] = temp;
+    wchar_t* temp = wal->list[i];
+    wal->list[i] = wal->list[j];
+    wal->list[j] = temp;
     return 0;
 }
 
-int delete_item(Wide_String_List* wl, int n) 
+int delete_item(Wchar_Array_List* wal, int n) 
 {
-    if (wl == NULL || n < 0 || n >= wl->size)
+    if (wal == NULL || n < 0 || n >= wal->size)
     {
         return -1;
     }
-    free(wl->list[n]);
-    memmove(&wl->list[n], &wl->list[n + 1], (wl->size - n - 1) * sizeof(wchar_t*));
-    wl->size--;
+    free(wal->list[n]);
+    memmove(&wal->list[n], &wal->list[n + 1], (wal->size - n - 1) * sizeof(wchar_t*));
+    wal->size--;
     return 0;
 }
 
-void print_list(Wide_String_List* wl) 
+void print_list(Wchar_Array_List* wal) 
 {
     setlocale(LC_ALL, "");
-    if (wl == NULL)
+    if (wal == NULL)
     {
         return;
     }
-    for (int i = 0; i < wl->size; i++) 
+    for (int i = 0; i < wal->size; i++) 
     {
-        wprintf(L"%ls\n", wl->list[i]);
+        wprintf(L"%ls\n", wal->list[i]);
     }
 }
 
-char* get_item(Wide_String_List* wl, int n) 
+char* get_item(Wchar_Array_List* wal, int n) 
 {
-    if (wl == NULL || n < 0 || n >= wl->size)
+    if (wal == NULL || n < 0 || n >= wal->size)
     {
         return NULL;
     }
-    int size = wcstombs(NULL, wl->list[n], 0);
+    int size = wcstombs(NULL, wal->list[n], 0);
     char* result = (char*)malloc((size + 1) * sizeof(char));
-    wcstombs(result, wl->list[n], size + 1);
+    wcstombs(result, wal->list[n], size + 1);
     return result;
 }

@@ -2,87 +2,87 @@
 
 /* Dynamic string data type */
 
-Dynamic_Wide_String* init_dwstring(const wchar_t* ws)
+Dynamic_Wchar_Array* init_dwc_array(const wchar_t* wa)
 {
-    Dynamic_Wide_String* dws = malloc(sizeof(Dynamic_Wide_String));
-    if (dws == NULL) return NULL;
-    dws->size = wcslen(ws);
-    dws->data = malloc((dws->size + 1) * sizeof(wchar_t));
-    if (dws->data == NULL) 
+    Dynamic_Wchar_Array* dwa = malloc(sizeof(Dynamic_Wchar_Array));
+    if (dwa == NULL) return NULL;
+    dwa->size = wcslen(wa);
+    dwa->data = malloc((dwa->size + 1) * sizeof(wchar_t));
+    if (dwa->data == NULL) 
     {
-        free(dws);
+        free(dwa);
         return NULL;
     }
-    wcscpy(dws->data, ws);
-    return dws;
+    wcscpy(dwa->data, wa);
+    return dwa;
 }
 
-void free_dwstring(Dynamic_Wide_String* dws)
+void free_dwc_array(Dynamic_Wchar_Array* dwa)
 {
-    if (dws) 
+    if (dwa) 
     {
-        free(dws->data);
-        free(dws);
+        free(dwa->data);
+        free(dwa);
     }
 }
 
-void append_to_dwstring(Dynamic_Wide_String* dws, const wchar_t* ws)
+void append_to_dwc_array(Dynamic_Wchar_Array* dwa, const wchar_t* wa)
 {
-    int new_size = dws->size + wcslen(ws);
-    wchar_t* new_data = realloc(dws->data, (new_size + 1) * sizeof(wchar_t));
+    int new_size = dwa->size + wcslen(wa);
+    wchar_t* new_data = realloc(dwa->data, (new_size + 1) * sizeof(wchar_t));
     if (new_data == NULL) return;
-    dws->data = new_data;
-    wcscat(dws->data, ws);
-    dws->size = new_size;
+    dwa->data = new_data;
+    wcscat(dwa->data, wa);
+    dwa->size = new_size;
 }
 
-void prepend_to_dwstring(Dynamic_Wide_String* dws, const wchar_t* ws)
+void prepend_to_dwc_array(Dynamic_Wchar_Array* dwa, const wchar_t* wa)
 {
-    int prepend_len = wcslen(ws);
-    int new_size = dws->size + prepend_len;
+    int prepend_len = wcslen(wa);
+    int new_size = dwa->size + prepend_len;
     wchar_t* new_data = malloc((new_size + 1) * sizeof(wchar_t));
     if (new_data == NULL) return;
-    wcscpy(new_data, ws);
-    wcscat(new_data, dws->data);
-    free(dws->data);
-    dws->data = new_data;
-    dws->size = new_size;
+    wcscpy(new_data, wa);
+    wcscat(new_data, dwa->data);
+    free(dwa->data);
+    dwa->data = new_data;
+    dwa->size = new_size;
 }
 
-void replace_dwstring(Dynamic_Wide_String* dws, const wchar_t* ws)
+void replace_dwc_array(Dynamic_Wchar_Array* dwa, const wchar_t* wa)
 {
-    int new_size = wcslen(ws);
-    wchar_t* new_data = realloc(dws->data, (new_size + 1) * sizeof(wchar_t));
+    int new_size = wcslen(wa);
+    wchar_t* new_data = realloc(dwa->data, (new_size + 1) * sizeof(wchar_t));
     if (new_data == NULL) return;
-    dws->data = new_data;
-    wcscpy(dws->data, ws);
-    dws->size = new_size;
+    dwa->data = new_data;
+    wcscpy(dwa->data, wa);
+    dwa->size = new_size;
 }
 
-void substitute_in_dwstring(Dynamic_Wide_String* dws, const wchar_t* old_ws, const wchar_t* new_ws)
+void substitute_in_dwc_array(Dynamic_Wchar_Array* dwa, const wchar_t* old_wa, const wchar_t* new_wa)
 {
-    wchar_t* pos = wcsstr(dws->data, old_ws);
+    wchar_t* pos = wcsstr(dwa->data, old_wa);
     if (pos == NULL) return;
-    int old_len = wcslen(old_ws);
-    int new_len = wcslen(new_ws);
+    int old_len = wcslen(old_wa);
+    int new_len = wcslen(new_wa);
     int diff = new_len - old_len;
     if (diff > 0) 
     {
-        int new_size = dws->size + diff;
-        wchar_t* new_data = realloc(dws->data, (new_size + 1) * sizeof(wchar_t));
+        int new_size = dwa->size + diff;
+        wchar_t* new_data = realloc(dwa->data, (new_size + 1) * sizeof(wchar_t));
         if (new_data == NULL) return;
-        dws->data = new_data;
-        dws->size = new_size;
-        pos = wcsstr(dws->data, old_ws);
+        dwa->data = new_data;
+        dwa->size = new_size;
+        pos = wcsstr(dwa->data, old_wa);
     }
     memmove(pos + new_len, pos + old_len, (wcslen(pos + old_len) + 1) * sizeof(wchar_t));
-    wmemcpy(pos, new_ws, new_len);
+    wmemcpy(pos, new_wa, new_len);
     if (diff < 0) 
     {
-        int new_size = dws->size + diff;
-        wchar_t* new_data = realloc(dws->data, (new_size + 1) * sizeof(wchar_t));
+        int new_size = dwa->size + diff;
+        wchar_t* new_data = realloc(dwa->data, (new_size + 1) * sizeof(wchar_t));
         if (new_data == NULL) return;
-        dws->data = new_data;
-        dws->size = new_size;
+        dwa->data = new_data;
+        dwa->size = new_size;
     }
 }

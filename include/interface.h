@@ -30,36 +30,36 @@
 
 /* list.c */
 
-typedef struct Wide_String_List 
+typedef struct Wchar_Array_List 
 {
     wchar_t** list;
     int size;
-} Wide_String_List;
+} Wchar_Array_List;
 
-Wide_String_List* init_list(const wchar_t** ws_array);
-void free_list(Wide_String_List* wl);
-int add_item(Wide_String_List* wl, const wchar_t* ws);
-int update_item(Wide_String_List* wl, const wchar_t* ws, int i);
-int insert_item(Wide_String_List* wl, const wchar_t* ws, int n);
-int swap_items(Wide_String_List* wl, int i, int j);
-int delete_item(Wide_String_List* wl, int n);
-void print_list(Wide_String_List* wl);
-char* get_item(Wide_String_List* wl, int n);
+Wchar_Array_List* init_list(const wchar_t** waa);
+void free_list(Wchar_Array_List* wal);
+int add_item(Wchar_Array_List* wal, const wchar_t* wa);
+int update_item(Wchar_Array_List* wal, const wchar_t* wa, int i);
+int insert_item(Wchar_Array_List* wal, const wchar_t* wa, int n);
+int swap_items(Wchar_Array_List* wal, int i, int j);
+int delete_item(Wchar_Array_List* wal, int n);
+void print_list(Wchar_Array_List* wal);
+char* get_item(Wchar_Array_List* wal, int n);
 
-/* dwstring.c */
+/* dwc_array.c */
 
-typedef struct Dynamic_Wide_String
+typedef struct Dynamic_Wchar_Array
 {
     wchar_t* data;
     int size;
-} Dynamic_Wide_String;
+} Dynamic_Wchar_Array;
 
-Dynamic_Wide_String* init_dwstring(const wchar_t* ws);
-void free_dwstring(Dynamic_Wide_String* dws);
-void append_to_dwstring(Dynamic_Wide_String* dws, const wchar_t* ws);
-void prepend_to_dwstring(Dynamic_Wide_String* dws, const wchar_t* ws);
-void replace_dwstring(Dynamic_Wide_String* dws, const wchar_t* ws);
-void substitute_in_dwstring(Dynamic_Wide_String* ds, const wchar_t* old_ws, const wchar_t* new_ws);
+Dynamic_Wchar_Array* init_dwc_array(const wchar_t* wa);
+void free_dwc_array(Dynamic_Wchar_Array* dwa);
+void append_to_dwc_array(Dynamic_Wchar_Array* dwa, const wchar_t* wa);
+void prepend_to_dwc_array(Dynamic_Wchar_Array* dwa, const wchar_t* wa);
+void replace_dwc_array(Dynamic_Wchar_Array* dwa, const wchar_t* wa);
+void substitute_in_dwc_array(Dynamic_Wchar_Array* ds, const wchar_t* old_wa, const wchar_t* new_wa);
 
 /* terminal.c */
 
