@@ -19,19 +19,19 @@ void seed()
 
 /* Wide char arrays representing integers */
 
-bool is_int(const wchar_t* arg) 
+bool is_int(const wchar_t *arg) 
 {
     wchar_t* endptr;
     wcstol(arg, &endptr, 10);
     return (*endptr == L'\0');
 }
 
-int to_int(const wchar_t* arg) 
+int to_int(const wchar_t *arg) 
 {
     return (int)wcstol(arg, NULL, 10);
 }
 
-bool is_pos_int(const wchar_t* arg) 
+bool is_pos_int(const wchar_t *arg) 
 {
     if (is_int(arg)) 
     {
@@ -41,7 +41,7 @@ bool is_pos_int(const wchar_t* arg)
     return false;
 }
 
-bool is_neg_int(const wchar_t* arg) 
+bool is_neg_int(const wchar_t *arg) 
 {
     if (is_int(arg)) 
     {

@@ -1,6 +1,6 @@
 #include "interface.h"
 
-void print_dwc_array(Dynamic_Wchar_Array* dwa) 
+void print_dwc_array(Dynamic_Wchar_Array *dwa) 
 {
     wprintf(L"String: %ls\n", dwa->data);
     wprintf(L"Size: %d\n", dwa->size);
@@ -11,7 +11,7 @@ int main()
     setlocale(LC_ALL, "");  // Set locale for wide character output
 
     // Test init_dwc_array
-    Dynamic_Wchar_Array* dwa = init_dwc_array(L"Hello 世界 🔥");
+    Dynamic_Wchar_Array *dwa = init_dwc_array(L"Hello 世界 🔥");
     wprintf(L"After initialization:\n");
     print_dwc_array(dwa);
 

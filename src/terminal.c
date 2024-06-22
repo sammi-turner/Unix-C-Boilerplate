@@ -31,7 +31,7 @@ void show_console_cursor()
     fflush(stdout);
 }
 
-void render_menu(const wchar_t *const menu[], int size, int count)
+void render_menu(const wchar_t *menu[], size_t size, int count)
 {
     setlocale(LC_ALL, "");
     system("clear");
@@ -50,7 +50,7 @@ void render_menu(const wchar_t *const menu[], int size, int count)
     wprintf(L"\n");
 }
 
-int select_option(const wchar_t *const menu[], int size)
+int select_option(const wchar_t *menu[], size_t size)
 {
     enable_single_character_input();
     hide_console_cursor();
@@ -87,7 +87,7 @@ int select_option(const wchar_t *const menu[], int size)
     return value;
 }
 
-char* edit_prompt(const char* prompt, const char* buffer, size_t max) 
+char* edit_prompt(const char *prompt, const char *buffer, size_t max) 
 {
     printf("%s", prompt);
     if (strlen(prompt) != 0) 

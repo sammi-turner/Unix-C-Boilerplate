@@ -2,9 +2,9 @@
 
 /* List data type */
 
-Wchar_Array_List* init_list(const wchar_t** waa) 
+Wchar_Array_List* init_list(const wchar_t **waa) 
 {
-    Wchar_Array_List* wal = (Wchar_Array_List*)malloc(sizeof(Wchar_Array_List));
+    Wchar_Array_List *wal = (Wchar_Array_List*)malloc(sizeof(Wchar_Array_List));
     wal->size = 0;
     wal->list = NULL;
     if (waa != NULL) 
@@ -24,13 +24,13 @@ Wchar_Array_List* init_list(const wchar_t** waa)
     return wal;
 }
 
-void free_list(Wchar_Array_List* wal) 
+void free_list(Wchar_Array_List *wal) 
 {
     if (wal == NULL)
     {
         return;
     }
-    for (int i = 0; i < wal->size; i++) 
+    for (size_t i = 0; i < wal->size; i++) 
     {
         free(wal->list[i]);
     }
@@ -38,7 +38,7 @@ void free_list(Wchar_Array_List* wal)
     free(wal);
 }
 
-int add_item(Wchar_Array_List* wal, const wchar_t* wa) 
+int add_item(Wchar_Array_List *wal, const wchar_t *wa) 
 {
     if (wal == NULL || wa == NULL)
     {
@@ -50,7 +50,7 @@ int add_item(Wchar_Array_List* wal, const wchar_t* wa)
     return wal->size - 1;
 }
 
-int update_item(Wchar_Array_List* wal, const wchar_t* wa, int i) 
+int update_item(Wchar_Array_List *wal, const wchar_t *wa, size_t i) 
 {
     if (wal == NULL || wa == NULL || i < 0 || i >= wal->size)
     {
@@ -61,7 +61,7 @@ int update_item(Wchar_Array_List* wal, const wchar_t* wa, int i)
     return i;
 }
 
-int insert_item(Wchar_Array_List* wal, const wchar_t* wa, int n) 
+int insert_item(Wchar_Array_List *wal, const wchar_t *wa, size_t n) 
 {
     if (wal == NULL || wa == NULL || n < 0 || n > wal->size)
     {
@@ -74,7 +74,7 @@ int insert_item(Wchar_Array_List* wal, const wchar_t* wa, int n)
     return n;
 }
 
-int swap_items(Wchar_Array_List* wal, int i, int j) 
+int swap_items(Wchar_Array_List *wal, size_t i, size_t j) 
 {
     if (wal == NULL || i < 0 || i >= wal->size || j < 0 || j >= wal->size)
     {
@@ -86,7 +86,7 @@ int swap_items(Wchar_Array_List* wal, int i, int j)
     return 0;
 }
 
-int delete_item(Wchar_Array_List* wal, int n) 
+int delete_item(Wchar_Array_List *wal, size_t n) 
 {
     if (wal == NULL || n < 0 || n >= wal->size)
     {
@@ -98,27 +98,27 @@ int delete_item(Wchar_Array_List* wal, int n)
     return 0;
 }
 
-void print_list(Wchar_Array_List* wal) 
+void print_list(Wchar_Array_List *wal) 
 {
     setlocale(LC_ALL, "");
     if (wal == NULL)
     {
         return;
     }
-    for (int i = 0; i < wal->size; i++) 
+    for (size_t i = 0; i < wal->size; i++) 
     {
         wprintf(L"%ls\n", wal->list[i]);
     }
 }
 
-char* get_item(Wchar_Array_List* wal, int n) 
+char* get_item(Wchar_Array_List *wal, size_t n) 
 {
     if (wal == NULL || n < 0 || n >= wal->size)
     {
         return NULL;
     }
-    int size = wcstombs(NULL, wal->list[n], 0);
-    char* result = (char*)malloc((size + 1) * sizeof(char));
+    size_t size = wcstombs(NULL, wal->list[n], 0);
+    char *result = (char*)malloc((size + 1) * sizeof(char));
     wcstombs(result, wal->list[n], size + 1);
     return result;
 }
