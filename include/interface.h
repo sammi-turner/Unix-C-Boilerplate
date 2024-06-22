@@ -67,7 +67,7 @@ void enable_single_character_input();
 void restore_normal_input();
 void hide_console_cursor();
 void show_console_cursor();
-void render_menu(const wchar_t *menu[], size_t size, int count);
+void render_menu(const wchar_t *menu[], size_t size, size_t count);
 int select_option(const wchar_t *menu[], size_t size);
 char* edit_prompt(const char *prompt, const char *buffer, size_t max);
 
