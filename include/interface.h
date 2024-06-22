@@ -46,7 +46,7 @@ int delete_item(Wchar_Array_List *wal, size_t n);
 void print_list(Wchar_Array_List *wal);
 char* get_item(Wchar_Array_List *wal, size_t n);
 
-/* dwc_array.c */
+/* array.c */
 
 typedef struct Dynamic_Wchar_Array
 {
