@@ -1,5 +1,3 @@
-#include "interface.h"
-
 int main() 
 {
     const char* s1 = "hello";

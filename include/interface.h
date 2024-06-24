@@ -78,6 +78,13 @@ wchar_t* read_file_to_wchar(const char *name);
 bool write_wchar_to_file(const char *name, const wchar_t *wide_string);
 bool append_wchar_to_file(const char *name, const wchar_t *wide_string);
 
+/* strings.c */
+
+bool compare_lengths(const char* str1, const char* str2);
+bool compare_first_char(const char* str1, const char* str2);
+bool compare_full_strings(const char* str1, const char* str2);
+bool compare_optimized(const char* str1, const char* str2);
+
 /* misc.c */
 
 bool is_pos_int(const wchar_t *arg);
