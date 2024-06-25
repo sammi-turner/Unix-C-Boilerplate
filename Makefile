@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Iinclude -Wall -Wextra -std=c11
 
 # Linker flags
-LDFLAGS = -liconv
+LDFLAGS = 
 
 # Target executable name
 TARGET = main
@@ -18,6 +18,14 @@ INCLUDE_DIR = include
 # Source and object files
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(BIN_DIR)/%.o, $(SRCS))
+
+# Detect OS
+UNAME_S := $(shell uname -s)
+
+# Add -liconv for macOS
+ifeq ($(UNAME_S),Darwin)
+    LDFLAGS += -liconv
+endif
 
 # Rule for building the target
 $(TARGET): $(OBJS)

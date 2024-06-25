@@ -52,7 +52,7 @@ int add_item(Wchar_Array_List *wal, const wchar_t *wa)
 
 int update_item(Wchar_Array_List *wal, const wchar_t *wa, size_t i) 
 {
-    if (wal == NULL || wa == NULL || i < 0 || i >= wal->size)
+    if (wal == NULL || wa == NULL || i >= wal->size)
     {
         return -1;
     }
@@ -63,7 +63,7 @@ int update_item(Wchar_Array_List *wal, const wchar_t *wa, size_t i)
 
 int insert_item(Wchar_Array_List *wal, const wchar_t *wa, size_t n) 
 {
-    if (wal == NULL || wa == NULL || n < 0 || n > wal->size)
+    if (wal == NULL || wa == NULL || n > wal->size)
     {
         return -1;
     }
@@ -76,7 +76,7 @@ int insert_item(Wchar_Array_List *wal, const wchar_t *wa, size_t n)
 
 int swap_items(Wchar_Array_List *wal, size_t i, size_t j) 
 {
-    if (wal == NULL || i < 0 || i >= wal->size || j < 0 || j >= wal->size)
+    if (wal == NULL || i >= wal->size || j >= wal->size)
     {
         return -1;
     }
@@ -88,7 +88,7 @@ int swap_items(Wchar_Array_List *wal, size_t i, size_t j)
 
 int delete_item(Wchar_Array_List *wal, size_t n) 
 {
-    if (wal == NULL || n < 0 || n >= wal->size)
+    if (wal == NULL || n >= wal->size)
     {
         return -1;
     }
@@ -113,7 +113,7 @@ void print_list(Wchar_Array_List *wal)
 
 char* get_item(Wchar_Array_List *wal, size_t n) 
 {
-    if (wal == NULL || n < 0 || n >= wal->size)
+    if (wal == NULL || n >= wal->size)
     {
         return NULL;
     }

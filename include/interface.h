@@ -28,6 +28,21 @@
 #define BRIGHT_CYAN "\033[96m"
 #define RESET "\033[0m"
 
+/* Linux compatibility macro */
+
+#ifndef wcsdup
+static inline wchar_t *wcsdup(const wchar_t *s) 
+{
+    size_t len = wcslen(s) + 1;
+    wchar_t *new_str = (wchar_t *)malloc(len * sizeof(wchar_t));
+    if (new_str == NULL) 
+    {
+        return NULL;
+    }
+    return wmemcpy(new_str, s, len);
+}
+#endif
+
 /* list.c */
 
 typedef struct Wchar_Array_List 

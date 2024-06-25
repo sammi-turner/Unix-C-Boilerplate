@@ -1,0 +1,56 @@
+#include "interface.h"
+
+int main() 
+{
+    // Initialize a wide character string array
+    const wchar_t* hello[] = 
+    {
+        L"Hello",
+        L"世界",
+        L"안녕하세요",
+        L"Привет",
+        NULL
+    };
+
+    // Create a new Wchar_Array_List
+    Wchar_Array_List *wal = init_list(hello);
+
+    // Print the initial list
+    printf("Initial list:\n");
+    print_list(wal);
+
+    // Add a new item
+    add_item(wal, L"Bonjour");
+    printf("\nAfter adding an item:\n");
+    print_list(wal);
+
+    // Update an item
+    update_item(wal, L"Updated", 1);
+    printf("\nAfter updating an item:\n");
+    print_list(wal);
+
+    // Insert an item
+    insert_item(wal, L"Inserted", 2);
+    printf("\nAfter inserting an item:\n");
+    print_list(wal);
+
+    // Swap items
+    swap_items(wal, 0, 3);
+    printf("\nAfter swapping items:\n");
+    print_list(wal);
+
+    // Delete an item
+    delete_item(wal, 1);
+    printf("\nAfter deleting an item:\n");
+    print_list(wal);
+
+    // Get an item
+    char* item = get_item(wal, 2);
+    printf("\nRetrieved item: %s\n", item);
+    free(item);
+
+    // Free the Wchar_Array_List
+    free_list(wal);
+
+    return 0;
+}
