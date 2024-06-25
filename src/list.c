@@ -111,14 +111,14 @@ void print_list(Wchar_Array_List *wal)
     }
 }
 
-char* get_item(Wchar_Array_List *wal, size_t n) 
+wchar_t* get_item(Wchar_Array_List *wal, size_t n) 
 {
     if (wal == NULL || n >= wal->size)
     {
         return NULL;
     }
-    size_t size = wcstombs(NULL, wal->list[n], 0);
-    char *result = (char*)malloc((size + 1) * sizeof(char));
-    wcstombs(result, wal->list[n], size + 1);
+    size_t size = wcslen(wal->list[n]);
+    wchar_t *result = (wchar_t*)malloc((size + 1) * sizeof(wchar_t));
+    wcscpy(result, wal->list[n]);
     return result;
 }

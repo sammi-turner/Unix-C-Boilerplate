@@ -48,8 +48,8 @@ int main()
     print_list(wal);
 
     // Get an item
-    char* item = get_item(wal, 1);
-    wprintf(L"\nRetrieved item: %s\n", item);
+    wchar_t* item = get_item(wal, 1);
+    wprintf(L"\nRetrieved item: %ls\n", item);
     free(item);
 
     // Free the Wchar_Array_List

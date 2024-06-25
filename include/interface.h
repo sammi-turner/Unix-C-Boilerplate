@@ -61,7 +61,7 @@ int insert_item(Wchar_Array_List *wal, const wchar_t *wa, size_t n);
 int swap_items(Wchar_Array_List *wal, size_t i, size_t j);
 int delete_item(Wchar_Array_List *wal, size_t n);
 void print_list(Wchar_Array_List *wal);
-char* get_item(Wchar_Array_List *wal, size_t n);
+wchar_t* get_item(Wchar_Array_List *wal, size_t n);
 
 /* array.c */
 
