@@ -22,6 +22,7 @@ The project has the following directory structure:
   - `list.c`: functions that use the dynamic list data type.
   - `files.c`: functions handling file I/O.
   - `terminal.c`: functions handling terminal I/O.
+  - `strings.c`: string helper functions.
   - `misc.c`: miscellaneous helper functions. 
 - `Makefile`: Defines the build rules and configuration for the project.
 
