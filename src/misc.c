@@ -19,16 +19,16 @@ void seed()
 
 /* Wide char arrays representing integers */
 
+int to_int(const wchar_t *arg) 
+{
+    return (int)wcstol(arg, NULL, 10);
+}
+
 bool is_int(const wchar_t *arg) 
 {
     wchar_t* endptr;
     wcstol(arg, &endptr, 10);
     return (*endptr == L'\0');
-}
-
-int to_int(const wchar_t *arg) 
-{
-    return (int)wcstol(arg, NULL, 10);
 }
 
 bool is_pos_int(const wchar_t *arg) 

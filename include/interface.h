@@ -104,20 +104,26 @@ bool compare_optimized(const char* str1, const char* str2);
 
 /* misc.c */
 
-bool is_pos_int(const wchar_t *arg);
-bool is_neg_int(const wchar_t *arg);
-bool is_int(const wchar_t *arg);
-int to_int(const wchar_t *arg);
-int is_char_digit(const wchar_t arg);
-int is_char_hex_digit(const wchar_t arg);
-int is_char_alpha_numeric(const wchar_t arg);
-int is_char_letter(const wchar_t arg);
-int is_char_lower_case(const wchar_t arg);
-int is_char_upper_case(const wchar_t arg);
-int is_char_punct(const wchar_t arg);
-int is_char_white_space(const wchar_t arg);
-int is_char_graphical(const wchar_t arg);
 int pseudo(const int arg);
 void seed();
+
+/* Wide char arrays representing integers */
+
+int to_int(const wchar_t *arg);
+bool is_int(const wchar_t *arg);
+bool is_pos_int(const wchar_t *arg);
+bool is_neg_int(const wchar_t *arg);
+
+/* Wide char classification */
+
+bool is_wchar_digit(const wchar_t arg);
+bool is_wchar_hex_digit(const wchar_t arg);
+bool is_wchar_alpha_numeric(const wchar_t arg);
+bool is_wchar_letter(const wchar_t arg);
+bool is_wchar_lower_case(const wchar_t arg);
+bool is_wchar_upper_case(const wchar_t arg);
+bool is_wchar_punct(const wchar_t arg);
+bool is_wchar_white_space(const wchar_t arg);
+bool is_wchar_graphical(const wchar_t arg);
 
 #endif
