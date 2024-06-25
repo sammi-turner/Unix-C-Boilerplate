@@ -30,7 +30,7 @@
 
 /* Linux compatibility macro */
 
-#if !defined(__APPLE__) && !defined(__FreeBSD__) && !defined(_WIN32)
+#if !defined(__APPLE__) && !defined(__FreeBSD__)
     #ifndef wcsdup
     static inline wchar_t *wcsdup(const wchar_t *s) 
     {
