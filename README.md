@@ -28,24 +28,45 @@ The project has the following directory structure:
 
 <br>
 
-## Build System
+## Makefile
 
-The project uses a Makefile to automate the build process. The Makefile defines the following variables and rules:
+This project uses a Makefile to automate the build process. Here is a breakdown of its contents.
 
-- `CXX`: specifies the compiler to use (default: `gcc`).
-- `CXXFLAGS`: specifies the compiler flags, including the include directory and warning options.
-- `TARGET`: specifies the name of the target executable.
-- `SRC_DIR`: specifies the directory containing the source files.
-- `BIN_DIR`: specifies the directory where object files will be generated.
-- `INCLUDE_DIR`: specifies the directory containing the header files.
-- `SRCS`: lists all the source files in the `SRC_DIR`.
-- `OBJS`: lists the corresponding object files for each source file.
+### Compiler and Flags
 
-The Makefile provides the following rules:
+- `CC = gcc`: Uses GCC as the compiler.
+- `CFLAGS = -Iinclude -Wall -Wextra -std=c11`: Compiler flags:
+  - `-Iinclude`: Adds the `include` directory to the include path.
+  - `-Wall -Wextra`: Enables comprehensive warning messages.
+  - `-std=c11`: Uses the C11 standard.
 
-- `$(TARGET)`: builds the target executable by linking the object files.
-- `$(BIN_DIR)/%.o`: compiles the source files into object files.
-- `clean`: removes the object files and the target executable.
+### Directories
+
+- `SRC_DIR = src`: Source files directory.
+- `BIN_DIR = obj`: Object files directory.
+- `INCLUDE_DIR = include`: Header files directory.
+
+### Files
+
+- `SRCS = $(wildcard $(SRC_DIR)/*.c)`: Finds all .c files in the src directory.
+- `OBJS = $(patsubst $(SRC_DIR)/%.c, $(BIN_DIR)/%.o, $(SRCS))`: Generates object file names from source files.
+
+### OS Detection
+
+- Detects the operating system using `uname -s`.
+- For macOS (Darwin), adds `-liconv` to the linker flags.
+
+### Build Rules
+
+1. Main target rule: Compiles object files into the final executable.
+2. Object file rule: Compiles .c files into .o files.
+
+### Usage
+
+- Run `make` to build the project.
+- Run `make clean` to remove compiled files.
+
+Note: This Makefile assumes a specific project structure with src, obj, and include directories.
 
 <br>
 
