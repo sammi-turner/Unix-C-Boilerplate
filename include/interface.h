@@ -104,8 +104,8 @@ bool compare_optimized(const char* str1, const char* str2);
 
 /* misc.c */
 
-int pseudo(const int arg);
 void seed();
+int pseudo(const int arg);
 int to_int(const wchar_t *arg);
 bool is_int(const wchar_t *arg);
 bool is_pos_int(const wchar_t *arg);
