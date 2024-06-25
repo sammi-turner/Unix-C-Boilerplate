@@ -106,16 +106,10 @@ bool compare_optimized(const char* str1, const char* str2);
 
 int pseudo(const int arg);
 void seed();
-
-/* Wide char arrays representing integers */
-
 int to_int(const wchar_t *arg);
 bool is_int(const wchar_t *arg);
 bool is_pos_int(const wchar_t *arg);
 bool is_neg_int(const wchar_t *arg);
-
-/* Wide char classification */
-
 bool is_wchar_digit(const wchar_t arg);
 bool is_wchar_hex_digit(const wchar_t arg);
 bool is_wchar_alpha_numeric(const wchar_t arg);
