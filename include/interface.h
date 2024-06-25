@@ -30,17 +30,19 @@
 
 /* Linux compatibility macro */
 
-#ifndef wcsdup
-static inline wchar_t *wcsdup(const wchar_t *s) 
-{
-    size_t len = wcslen(s) + 1;
-    wchar_t *new_str = (wchar_t *)malloc(len * sizeof(wchar_t));
-    if (new_str == NULL) 
+#if !defined(__APPLE__) && !defined(__FreeBSD__) && !defined(_WIN32)
+    #ifndef wcsdup
+    static inline wchar_t *wcsdup(const wchar_t *s) 
     {
-        return NULL;
+        size_t len = wcslen(s) + 1;
+        wchar_t *new_str = (wchar_t *)malloc(len * sizeof(wchar_t));
+        if (new_str == NULL) 
+        {
+            return NULL;
+        }
+        return wmemcpy(new_str, s, len);
     }
-    return wmemcpy(new_str, s, len);
-}
+    #endif
 #endif
 
 /* list.c */
