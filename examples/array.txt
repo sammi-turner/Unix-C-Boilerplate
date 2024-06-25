@@ -8,7 +8,8 @@ void print_dwc_array(Dynamic_Wchar_Array *dwa)
 
 int main() 
 {
-    setlocale(LC_ALL, "");  // Set locale for wide character output
+    // Set locale for wide character output
+    setlocale(LC_ALL, "");
 
     // Test init_dwc_array
     Dynamic_Wchar_Array *dwa = init_dwc_array(L"Hello 世界 🔥");

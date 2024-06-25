@@ -2,6 +2,9 @@
 
 int main() 
 {
+    // Set locale for wide character output
+    setlocale(LC_ALL, "");
+
     const char* s1 = "hello";
     const char* s2 = "hello";
     const char* s3 = "world";
