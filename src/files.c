@@ -15,7 +15,6 @@ bool file_exists(const char *name)
 
 wchar_t* read_file_to_wchar(const char *name) 
 {
-    setlocale(LC_ALL, "");
     FILE* file = fopen(name, "r");
     if (file == NULL) 
     {
@@ -62,7 +61,6 @@ wchar_t* read_file_to_wchar(const char *name)
 
 bool write_wchar_to_file(const char *name, const wchar_t *wide_string) 
 {
-    setlocale(LC_ALL, "");
     FILE *file = fopen(name, "w");
     if (file == NULL) 
     {
@@ -91,7 +89,6 @@ bool write_wchar_to_file(const char *name, const wchar_t *wide_string)
 
 bool append_wchar_to_file(const char *name, const wchar_t *wide_string) 
 {
-    setlocale(LC_ALL, "");
     FILE *file = fopen(name, "a");
     if (file == NULL) 
     {

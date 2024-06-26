@@ -100,7 +100,6 @@ int delete_item(Wchar_Array_List *wal, size_t n)
 
 void print_list(Wchar_Array_List *wal) 
 {
-    setlocale(LC_ALL, "");
     if (wal == NULL)
     {
         return;

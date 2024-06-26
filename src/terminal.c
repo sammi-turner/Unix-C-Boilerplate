@@ -33,7 +33,6 @@ void show_console_cursor()
 
 void render_menu(const wchar_t *menu[], size_t size, size_t count)
 {
-    setlocale(LC_ALL, "");
     system("clear");
     wprintf(L"\n    %ls\n\n", menu[0]);
     for (size_t i = 1; i < size; i++) 
