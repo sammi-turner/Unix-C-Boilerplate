@@ -2,7 +2,7 @@
 
 int main() 
 {
-    bool r = file_exists("test.txt")
+    bool r = file_exists("test.txt");
     if (r)
     {
         printf("test.txt is in the working directory.\n");
