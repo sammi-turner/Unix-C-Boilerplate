@@ -1,0 +1,15 @@
+#include "interface.h"
+
+int main() 
+{
+    bool r = file_exists("test.txt")
+    if (r)
+    {
+        printf("test.txt is in the working directory.\n");
+    }
+    else 
+    {
+        printf("test.txt is not in the working directory.\n");
+    }
+    return 0;
+}

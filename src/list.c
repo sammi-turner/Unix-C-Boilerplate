@@ -4,7 +4,7 @@
 
 Wchar_Array_List* init_list(const wchar_t **waa) 
 {
-    Wchar_Array_List *wal = (Wchar_Array_List*)malloc(sizeof(Wchar_Array_List));
+    Wchar_Array_List *wal = (Wchar_Array_List*)calloc(1, sizeof(Wchar_Array_List));
     wal->size = 0;
     wal->list = NULL;
     if (waa != NULL) 
@@ -14,7 +14,7 @@ Wchar_Array_List* init_list(const wchar_t **waa)
         {
             count++;
         }
-        wal->list = (wchar_t**)malloc(count * sizeof(wchar_t*));
+        wal->list = (wchar_t**)calloc(count, sizeof(wchar_t*));
         for (int i = 0; i < count; i++) 
         {
             wal->list[i] = wcsdup(waa[i]);
@@ -117,7 +117,7 @@ wchar_t* get_item(Wchar_Array_List *wal, size_t n)
         return NULL;
     }
     size_t size = wcslen(wal->list[n]);
-    wchar_t *result = (wchar_t*)malloc((size + 1) * sizeof(wchar_t));
+    wchar_t *result = (wchar_t*)calloc((size + 1), sizeof(wchar_t));
     wcscpy(result, wal->list[n]);
     return result;
 }

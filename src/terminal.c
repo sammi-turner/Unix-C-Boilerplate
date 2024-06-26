@@ -98,7 +98,7 @@ char* edit_prompt(const char *prompt, const char *buffer, size_t max)
     newSettings = oldSettings;
     newSettings.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &newSettings);
-    char* s = malloc(max + 1);
+    char* s = (char*)calloc(1, max + 1);
     strncpy(s, buffer, max);
     s[max] = '\0';
     printf("%s", s);

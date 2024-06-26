@@ -4,10 +4,10 @@
 
 Dynamic_Wchar_Array* init_dwc_array(const wchar_t *wa)
 {
-    Dynamic_Wchar_Array *dwa = malloc(sizeof(Dynamic_Wchar_Array));
+    Dynamic_Wchar_Array *dwa = (Dynamic_Wchar_Array*)calloc(1, sizeof(Dynamic_Wchar_Array));
     if (dwa == NULL) return NULL;
     dwa->size = wcslen(wa);
-    dwa->data = malloc((dwa->size + 1) * sizeof(wchar_t));
+    dwa->data = (wchar_t*)calloc((dwa->size + 1), sizeof(wchar_t));
     if (dwa->data == NULL) 
     {
         free(dwa);
@@ -40,7 +40,7 @@ void prepend_to_dwc_array(Dynamic_Wchar_Array *dwa, const wchar_t *wa)
 {
     int prepend_len = wcslen(wa);
     int new_size = dwa->size + prepend_len;
-    wchar_t *new_data = malloc((new_size + 1) * sizeof(wchar_t));
+    wchar_t *new_data = (wchar_t*)calloc((new_size + 1), sizeof(wchar_t));
     if (new_data == NULL) return;
     wcscpy(new_data, wa);
     wcscat(new_data, dwa->data);

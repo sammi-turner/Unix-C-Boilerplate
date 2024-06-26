@@ -5,7 +5,6 @@ int main()
     // Set locale for wide character output
     setlocale(LC_ALL, "");
 
-    // append array of wide chars to a file
-    append_wchar_to_file("nerds.txt", L"Hello nerds! 🤓 👋🏻");
+    wprintf(L"This is a test : 안녕하세요 🤓 ✅\n");
     return 0;
 }

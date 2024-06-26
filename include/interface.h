@@ -1,6 +1,8 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
+/* System headers */
+
 #include <termios.h>
 #include <unistd.h>
 #include <ctype.h>
@@ -13,6 +15,8 @@
 #include <wchar.h>
 #include <time.h>
 #include <math.h>
+
+/* Color printing macros*/
 
 #define RED "\033[31m"
 #define BRIGHT_RED "\033[91m"
@@ -35,7 +39,7 @@
     static inline wchar_t *wcsdup(const wchar_t *s) 
     {
         size_t len = wcslen(s) + 1;
-        wchar_t *new_str = (wchar_t *)malloc(len * sizeof(wchar_t));
+        wchar_t *new_str = (wchar_t*)calloc(len, sizeof(wchar_t));
         if (new_str == NULL) 
         {
             return NULL;

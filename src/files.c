@@ -24,7 +24,7 @@ wchar_t* read_file_to_wchar(const char *name)
     fseek(file, 0, SEEK_END);
     long file_size = ftell(file);
     rewind(file);
-    char* utf8_string = (char*)malloc(file_size + 1);
+    char* utf8_string = (char*)calloc(file_size + 1, sizeof(char));
     if (utf8_string == NULL) 
     {
         perror("Memory allocation failed");
@@ -41,7 +41,7 @@ wchar_t* read_file_to_wchar(const char *name)
     }
     utf8_string[bytes_read] = '\0';
     size_t wide_size = mbstowcs(NULL, utf8_string, 0) + 1;
-    wchar_t *wide_string = (wchar_t*)malloc(wide_size * sizeof(wchar_t));
+    wchar_t *wide_string = (wchar_t*)calloc(wide_size, sizeof(wchar_t));
     if (wide_string == NULL) 
     {
         perror("Memory allocation failed");
@@ -68,7 +68,7 @@ bool write_wchar_to_file(const char *name, const wchar_t *wide_string)
         return false;
     }
     size_t utf8_size = wcstombs(NULL, wide_string, 0) + 1;
-    char *utf8_string = (char*)malloc(utf8_size);
+    char *utf8_string = (char*)calloc(1, utf8_size);
     if (utf8_string == NULL) {
         perror("Memory allocation failed");
         fclose(file);
@@ -96,7 +96,7 @@ bool append_wchar_to_file(const char *name, const wchar_t *wide_string)
         return false;
     }
     size_t utf8_size = wcstombs(NULL, wide_string, 0) + 1;
-    char* utf8_string = (char*)malloc(utf8_size);
+    char* utf8_string = (char*)calloc(1, utf8_size);
     if (utf8_string == NULL) {
         perror("Memory allocation failed");
         fclose(file);
