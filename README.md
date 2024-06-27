@@ -1,12 +1,12 @@
 <br>
 
-# Unix C Project Template
+# Unix C Project Boilerplate
 
 <br>
 
 ## Overview
 
-This is a C project template for Unix-based systems. It provides a basic structure and configuration for building C projects using a Makefile.
+This repo provides a basic structure and configuration for building C projects using a Makefile. It also contains a codebase of potentially useful library code.
 
 <br>
 
