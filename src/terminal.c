@@ -41,10 +41,12 @@ char* shell(const char* arg, size_t size)
     char* result = NULL;
     char buffer[size];
     size_t result_len = 0;
-    while (fgets(buffer, sizeof(buffer), pipe) != NULL) {
+    while (fgets(buffer, sizeof(buffer), pipe) != NULL) 
+    {
         size_t len = strlen(buffer);
         char* new_result = realloc(result, result_len + len + 1);
-        if (!new_result) {
+        if (!new_result) 
+        {
             free(result);
             pclose(pipe);
             return NULL;
