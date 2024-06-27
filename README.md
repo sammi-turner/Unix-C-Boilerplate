@@ -1,6 +1,6 @@
 <br>
 
-# Unix C Project Boilerplate
+# Unix C Boilerplate
 
 <br>
 
