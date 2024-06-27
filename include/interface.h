@@ -32,10 +32,10 @@
 #define BRIGHT_CYAN "\033[96m"
 #define RESET "\033[0m"
 
-/* Linux compatibility macro */
+/* Linux compatibility macros */
 
 #if !defined(__APPLE__) && !defined(__FreeBSD__)
-    #ifndef wcsdup
+    #if !defined(wcsdup) && !defined(_WCHAR_H)
     static inline wchar_t *wcsdup(const wchar_t *s) 
     {
         size_t len = wcslen(s) + 1;
@@ -99,7 +99,6 @@ void enable_single_character_input();
 void restore_normal_input();
 void hide_console_cursor();
 void show_console_cursor();
-char* shell(const char* arg, size_t size);
 void render_menu(const wchar_t *menu[], size_t size, size_t count);
 int select_option(const wchar_t *menu[], size_t size);
 char* edit_prompt(const char *prompt, const char *buffer, size_t max);

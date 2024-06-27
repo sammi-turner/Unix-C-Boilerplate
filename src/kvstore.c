@@ -2,8 +2,24 @@
 
 bool is_sqlite_installed()
 {
-    char *result = shell("sqlite3 --version", 256);
-    return (result[0] == '3');
+    char command[] = "sqlite3 --version 2>/dev/null";
+    FILE *fp;
+    char output[512];
+    bool result = false;
+    fp = popen(command, "r");
+    if (fp == NULL) 
+    {
+        return false;
+    }
+    if (fgets(output, sizeof(output), fp) != NULL) 
+    {
+        if (strncmp(output, "3.", 2) == 0) 
+        {
+            result = true;
+        }
+    }
+    pclose(fp);
+    return result;
 }
 
 char* create_key_value_table(const char* t)

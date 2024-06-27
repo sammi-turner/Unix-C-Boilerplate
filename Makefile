@@ -25,6 +25,9 @@ UNAME_S := $(shell uname -s)
 # Add -liconv for macOS
 ifeq ($(UNAME_S),Darwin)
     LDFLAGS += -liconv
+else
+    # For Linux and other Unix-like systems
+    CFLAGS += -D_POSIX_C_SOURCE=200809L
 endif
 
 # Rule for building the target
