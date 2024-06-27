@@ -49,6 +49,17 @@
     #endif
 #endif
 
+/* Sqlite3 macros */
+
+#define COMMAND_FORMAT "echo \"%s\" | sqlite3 %s.db"
+#define INSERT_QUERY "INSERT INTO %s (key, value) VALUES ('%s', '%s');"
+#define SELECT_ALL_KEYS_QUERY "SELECT key FROM %s;"
+#define SELECT_ALL_VALUES_QUERY "SELECT value FROM %s;"
+#define DELETE_QUERY "DELETE FROM %s WHERE key = '%s';"
+#define SELECT_ALL_QUERY "SELECT * FROM %s;"
+#define SELECT_ROW_QUERY "SELECT * FROM %s WHERE key = '%s';"
+#define SELECT_VALUE_QUERY "SELECT value FROM %s WHERE key = '%s';"
+
 /* list.c */
 
 typedef struct Wchar_Array_List 
@@ -106,6 +117,20 @@ bool compare_lengths(const char* str1, const char* str2);
 bool compare_first_char(const char* str1, const char* str2);
 bool compare_full_strings(const char* str1, const char* str2);
 bool compare_optimized(const char* str1, const char* str2);
+
+/* kvstore.c */
+
+bool is_sqlite_installed();
+char* create_key_value_table(const char* t);
+bool table_contains_key(const char* t, const char* k);
+char* execute_sqlite_command(const char* query, const char* table);
+char* insert_key_value_pair(const char* t, const char* k, const char* v);
+char* select_all_keys(const char* t);
+char* select_all_values(const char* t);
+char* delete_key_value_pair(const char* t, const char* k);
+char* select_all_pairs(const char* t);
+char* select_row_from_key(const char* t, const char* k);
+char* select_value_from_key(const char* t, const char* k);
 
 /* misc.c */
 

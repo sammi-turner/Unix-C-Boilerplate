@@ -2,7 +2,7 @@
 
 int main() 
 {
-    char* output = shell("ls -l", 1024);
+    char* output = shell("ls -l", 256);
     if (output) 
     {
         printf("Command output:\n%s", output);
