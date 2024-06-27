@@ -31,6 +31,36 @@ void show_console_cursor()
     fflush(stdout);
 }
 
+char* shell(const char* arg, size_t size) 
+{
+    FILE* pipe = popen(arg, "r");
+    if (!pipe) 
+    {
+        return NULL;
+    }
+    char* result = NULL;
+    char buffer[size];
+    size_t result_len = 0;
+    while (fgets(buffer, sizeof(buffer), pipe) != NULL) {
+        size_t len = strlen(buffer);
+        char* new_result = realloc(result, result_len + len + 1);
+        if (!new_result) {
+            free(result);
+            pclose(pipe);
+            return NULL;
+        }
+        result = new_result;
+        memcpy(result + result_len, buffer, len);
+        result_len += len;
+    }
+    if (result) 
+    {
+        result[result_len] = '\0';
+    }
+    pclose(pipe);
+    return result;
+}
+
 void render_menu(const wchar_t *menu[], size_t size, size_t count)
 {
     system("clear");
