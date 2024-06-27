@@ -12,7 +12,7 @@ char* create_key_value_table(const char* t)
     size_t query_size;
     char* result;
     query_size = snprintf(NULL, 0, "CREATE TABLE %s (key VARCHAR(50) PRIMARY KEY, value TEXT);", t) + 1;
-    query = malloc(query_size);
+    query = calloc(1, query_size);
     if (query == NULL)
     {
         return NULL;
@@ -48,7 +48,7 @@ char* execute_sqlite_command(const char* query, const char* table)
     size_t output_size = 0;
     size_t buffer_size;
     command_size = snprintf(NULL, 0, COMMAND_FORMAT, query, table) + 1;
-    command = malloc(command_size);
+    command = calloc(1, command_size);
     if (command == NULL)
     {
         return NULL;
@@ -61,7 +61,7 @@ char* execute_sqlite_command(const char* query, const char* table)
         return NULL;
     }
     buffer_size = command_size;
-    output = malloc(buffer_size);
+    output = calloc(1, buffer_size);
     if (output == NULL)
     {
         pclose(fp);
@@ -96,7 +96,7 @@ char* insert_key_value_pair(const char* t, const char* k, const char* v)
     size_t query_size;
     char* result;
     query_size = snprintf(NULL, 0, INSERT_QUERY, t, k, v) + 1;
-    query = malloc(query_size);
+    query = calloc(1, query_size);
     if (query == NULL)
     {
         return NULL;
@@ -113,7 +113,7 @@ char* select_all_keys(const char* t)
     size_t query_size;
     char* result;
     query_size = snprintf(NULL, 0, SELECT_ALL_KEYS_QUERY, t) + 1;
-    query = malloc(query_size);
+    query = calloc(1, query_size);
     if (query == NULL)
     {
         return NULL;
@@ -130,7 +130,7 @@ char* select_all_values(const char* t)
     size_t query_size;
     char* result;
     query_size = snprintf(NULL, 0, SELECT_ALL_VALUES_QUERY, t) + 1;
-    query = malloc(query_size);
+    query = calloc(1, query_size);
     if (query == NULL)
     {
         return NULL;
@@ -147,7 +147,7 @@ char* delete_key_value_pair(const char* t, const char* k)
     size_t query_size;
     char* result;
     query_size = snprintf(NULL, 0, DELETE_QUERY, t, k) + 1;
-    query = malloc(query_size);
+    query = calloc(1, query_size);
     if (query == NULL)
     {
         return NULL;
@@ -164,7 +164,7 @@ char* select_all_pairs(const char* t)
     size_t query_size;
     char* result;
     query_size = snprintf(NULL, 0, SELECT_ALL_QUERY, t) + 1;
-    query = malloc(query_size);
+    query = calloc(1, query_size);
     if (query == NULL)
     {
         return NULL;
@@ -181,7 +181,7 @@ char* select_row_from_key(const char* t, const char* k)
     size_t query_size;
     char* result;
     query_size = snprintf(NULL, 0, SELECT_ROW_QUERY, t, k) + 1;
-    query = malloc(query_size);
+    query = calloc(1, query_size);
     if (query == NULL)
     {
         return NULL;
@@ -198,7 +198,7 @@ char* select_value_from_key(const char* t, const char* k)
     size_t query_size;
     char* result;
     query_size = snprintf(NULL, 0, SELECT_VALUE_QUERY, t, k) + 1;
-    query = malloc(query_size);
+    query = calloc(1, query_size);
     if (query == NULL)
     {
         return NULL;
