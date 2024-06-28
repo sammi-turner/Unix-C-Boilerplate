@@ -22,7 +22,7 @@ bool is_sqlite_installed()
     return result;
 }
 
-char* create_key_value_table(const char* t)
+char* create_key_value_table(const char *t)
 {
     char* query = NULL;
     size_t query_size;
@@ -39,7 +39,7 @@ char* create_key_value_table(const char* t)
     return result;
 }
 
-bool table_contains_key(const char* t, const char* k)
+bool table_contains_key(const char *t, const char *k)
 {
     char *all = select_all_keys(t);
     char* token = strtok(all, "\n");
@@ -54,7 +54,7 @@ bool table_contains_key(const char* t, const char* k)
     return false;
 }
 
-char* execute_sqlite_command(const char* query, const char* table)
+char* execute_sqlite_command(const char *query, const char *table)
 {
     char* command = NULL;
     char* output = NULL;
@@ -106,7 +106,7 @@ char* execute_sqlite_command(const char* query, const char* table)
     return output;
 }
 
-char* insert_key_value_pair(const char* t, const char* k, const char* v)
+char* insert_key_value_pair(const char *t, const char *k, const char *v)
 {
     char* query = NULL;
     size_t query_size;
@@ -123,7 +123,7 @@ char* insert_key_value_pair(const char* t, const char* k, const char* v)
     return result;
 }
 
-char* select_all_keys(const char* t)
+char* select_all_keys(const char *t)
 {
     char* query = NULL;
     size_t query_size;
@@ -140,7 +140,7 @@ char* select_all_keys(const char* t)
     return result;
 }
 
-char* select_all_values(const char* t)
+char* select_all_values(const char *t)
 {
     char* query = NULL;
     size_t query_size;
@@ -157,7 +157,7 @@ char* select_all_values(const char* t)
     return result;
 }
 
-char* delete_key_value_pair(const char* t, const char* k)
+char* delete_key_value_pair(const char *t, const char *k)
 {
     char* query = NULL;
     size_t query_size;
@@ -174,7 +174,7 @@ char* delete_key_value_pair(const char* t, const char* k)
     return result;
 }
 
-char* select_all_pairs(const char* t)
+char* select_all_pairs(const char *t)
 {
     char* query = NULL;
     size_t query_size;
@@ -191,7 +191,7 @@ char* select_all_pairs(const char* t)
     return result;
 }
 
-char* select_row_from_key(const char* t, const char* k)
+char* select_row_from_key(const char *t, const char *k)
 {
     char* query = NULL;
     size_t query_size;
@@ -208,7 +208,7 @@ char* select_row_from_key(const char* t, const char* k)
     return result;
 }
 
-char* select_value_from_key(const char* t, const char* k)
+char* select_value_from_key(const char *t, const char *k)
 {
     char* query = NULL;
     size_t query_size;
