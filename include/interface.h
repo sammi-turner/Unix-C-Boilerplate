@@ -78,7 +78,8 @@ bool dynamic_strings_equal(const Dynamic_String *str1, const Dynamic_String *str
 
 /* list.c */
 
-typedef struct Dynamic_String_List {
+typedef struct Dynamic_String_List 
+{
     Dynamic_String **strings;
     size_t count;
     size_t capacity;
