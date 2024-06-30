@@ -19,6 +19,7 @@ The project has the following directory structure:
 - `src/`: contains source files (`.c`) that implement the functionality of the project.
   - `main.c`: the main source file of the project, which contains the `main()` function.
   - `dynamic.c`: functions that use the dynamic string type.
+  - `list.c`: functions that use the dynamic string list type.
   - `files.c`: functions handling file I/O.
   - `terminal.c`: functions handling terminal I/O.
   - `strings.c`: string helper functions.

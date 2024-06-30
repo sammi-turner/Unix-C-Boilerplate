@@ -76,6 +76,22 @@ void replace_dynamic_string(Dynamic_String *ds, const wchar_t *wa);
 void substitute_in_dynamic_string(Dynamic_String* ds, const wchar_t *old_wa, const wchar_t *new_wa);
 bool dynamic_strings_equal(const Dynamic_String *str1, const Dynamic_String *str2);
 
+/* list.c */
+
+typedef struct Dynamic_String_List {
+    Dynamic_String **strings;
+    size_t count;
+    size_t capacity;
+} Dynamic_String_List;
+
+Dynamic_String_List* init_dynamic_string_list(size_t initial_capacity);
+void free_dynamic_string_list(Dynamic_String_List *list);
+bool add_to_dynamic_string_list(Dynamic_String_List *list, Dynamic_String *str);
+bool remove_from_dynamic_string_list(Dynamic_String_List *list, size_t index);
+Dynamic_String* get_from_dynamic_string_list(Dynamic_String_List *list, size_t index);
+int find_in_dynamic_string_list(Dynamic_String_List *list, const Dynamic_String *str);
+void sort_dynamic_string_list(Dynamic_String_List *list);
+
 /* terminal.c */
 
 void enable_single_character_input();
