@@ -18,8 +18,7 @@ The project has the following directory structure:
   - `interface.h`: single header file for the project.
 - `src/`: contains source files (`.c`) that implement the functionality of the project.
   - `main.c`: the main source file of the project, which contains the `main()` function.
-  - `array.c`: functions that use the dynamic array data type.
-  - `list.c`: functions that use the dynamic list data type.
+  - `dynamic.c`: functions that use the dynamic string type.
   - `files.c`: functions handling file I/O.
   - `terminal.c`: functions handling terminal I/O.
   - `strings.c`: string helper functions.
