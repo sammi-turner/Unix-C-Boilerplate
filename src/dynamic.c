@@ -1,6 +1,6 @@
 #include "interface.h"
 
-/* dynamic wide char array data type */
+/* dynamic string data type */
 
 Dynamic_String* init_dynamic_string(const wchar_t *wa)
 {
