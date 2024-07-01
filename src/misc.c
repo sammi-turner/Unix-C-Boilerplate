@@ -2,6 +2,11 @@
 
 /* Pseudo-random number generation */
 
+void seed() 
+{
+    srand((unsigned int)time(NULL));
+}
+
 size_t pseudo(size_t arg) 
 {
     size_t result = 0;
@@ -10,11 +15,6 @@ size_t pseudo(size_t arg)
         result = (rand() % arg) + 1;
     }
     return result;
-}
-
-void seed() 
-{
-    srand((unsigned int)time(NULL));
 }
 
 /* Wide char arrays representing integers */
