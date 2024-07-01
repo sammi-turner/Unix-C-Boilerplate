@@ -1,72 +1,25 @@
 #include "interface.h"
 
-void print_list(Dynamic_String_List *list) 
-{
-    printf("List contents (%zu items):\n", list->count);
-    for (size_t i = 0; i < list->count; i++) 
-    {
-        printf("%zu: %ls\n", i, list->strings[i]->data);
-    }
-    printf("\n");
-}
-
 int main() 
 {
-    // Set locale for wide character support
+    // Set locale for wide character output
     setlocale(LC_ALL, "");
 
-    // Initialize the list
-    Dynamic_String_List *list = init_dynamic_string_list(5);
-    if (list == NULL) 
-    {
-        fprintf(stderr, "Failed to initialize list\n");
-        return 1;
-    }
+    // Compare optimised
+    char str0[] = "Hello";
+    char str1[] = "Hello";
+    char str2[] = "hello";
+    bool t0 = compare_optimized(str0, str1);
+    bool t1 = compare_optimized(str0, str2);
+    printf("Comparison values are %d and %d\n", t0, t1);
 
-    // Add some strings
-    Dynamic_String *str1 = init_dynamic_string(L"You're");
-    Dynamic_String *str2 = init_dynamic_string(L"tearing");
-    Dynamic_String *str3 = init_dynamic_string(L"me");
-    Dynamic_String *str4 = init_dynamic_string(L"apart");
-    Dynamic_String *str5 = init_dynamic_string(L"Lisa");
+    // Join strings by char
+    char *arr[] = {"Oh", "hi", "Mark"};
+    char *r0 = join_strings_by_char(arr, ' ', 3);
+    printf("%s\n", r0);
 
-    add_to_dynamic_string_list(list, str1);
-    add_to_dynamic_string_list(list, str2);
-    add_to_dynamic_string_list(list, str3);
-    add_to_dynamic_string_list(list, str4);
-    add_to_dynamic_string_list(list, str5);
-
-    printf("After adding strings:\n");
-    print_list(list);
-
-    // Test get function
-    Dynamic_String *retrieved = get_from_dynamic_string_list(list, 2);
-    if (retrieved != NULL) 
-    {
-        printf("Retrieved string at index 2: %ls\n\n", retrieved->data);
-    }
-
-    // Test find function
-    Dynamic_String *search = init_dynamic_string(L"apart");
-    int found_index = find_in_dynamic_string_list(list, search);
-    if (found_index != -1) 
-    {
-        printf("Found 'apart' at index: %d\n\n", found_index);
-    }
-    free_dynamic_string(search);
-
-    // Test remove function
-    remove_from_dynamic_string_list(list, 1);
-    printf("After removing index 1:\n");
-    print_list(list);
-
-    // Test sort function
-    sort_dynamic_string_list(list);
-    printf("After sorting:\n");
-    print_list(list);
-
-    // Clean up
-    free_dynamic_string_list(list);
-
+    // Split strings by char
+    char **r1 = split_string_by_char(r0, ' ');
+    printf("%s\n%s\n%s\n", r1[0], r1[1], r1[2]);
     return 0;
 }
