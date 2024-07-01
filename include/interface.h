@@ -135,7 +135,7 @@ char* select_value_from_key(const char *t, const char *k);
 /* misc.c */
 
 void seed();
-int pseudo(const int arg);
+size_t pseudo(size_t arg);
 int to_int(const wchar_t *arg);
 bool is_int(const wchar_t *arg);
 bool is_pos_int(const wchar_t *arg);
