@@ -92,6 +92,8 @@ bool remove_from_dynamic_string_list(Dynamic_String_List *list, size_t index);
 Dynamic_String* get_from_dynamic_string_list(Dynamic_String_List *list, size_t index);
 int find_in_dynamic_string_list(Dynamic_String_List *list, const Dynamic_String *str);
 void sort_dynamic_string_list(Dynamic_String_List *list);
+Dynamic_String_List* dynamic_string_to_list(Dynamic_String* ds, const wchar_t delimiter);
+Dynamic_String* list_to_dynamic_string(Dynamic_String_List* list, const wchar_t delimiter);
 
 /* terminal.c */
 
