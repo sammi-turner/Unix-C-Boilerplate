@@ -2,9 +2,9 @@
 
 /* Pseudo-random number generation */
 
-int pseudo(const int arg) 
+size_t pseudo(size_t arg) 
 {
-    int result = 0;
+    size_t result = 0;
     if (arg > 1) 
     {
         result = (rand() % arg) + 1;
