@@ -86,3 +86,87 @@ void sort_dynamic_string_list(Dynamic_String_List *list)
         }
     }
 }
+
+Dynamic_String_List* dynamic_string_to_list(Dynamic_String* ds, const wchar_t delimiter) 
+{
+    if (ds == NULL || ds->data == NULL) return NULL;
+    Dynamic_String_List* list = init_dynamic_string_list(10);
+    if (list == NULL) return NULL;
+    wchar_t* start = ds->data;
+    wchar_t* end = ds->data;
+    while (*end != L'\0') 
+    {
+        if (*end == delimiter) 
+        {
+            size_t len = end - start;
+            wchar_t* temp = calloc((len + 1), sizeof(wchar_t));
+            if (temp == NULL) 
+            {
+                free_dynamic_string_list(list);
+                return NULL;
+            }
+            wcsncpy(temp, start, len);
+            temp[len] = L'\0';
+            Dynamic_String* new_ds = init_dynamic_string(temp);
+            free(temp);
+            if (new_ds == NULL) 
+            {
+                free_dynamic_string_list(list);
+                return NULL;
+            }
+            if (!add_to_dynamic_string_list(list, new_ds)) 
+            {
+                free_dynamic_string(new_ds);
+                free_dynamic_string_list(list);
+                return NULL;
+            }
+            start = end + 1;
+        }
+        end++;
+    }
+    if (start != end) 
+    {
+        Dynamic_String* new_ds = init_dynamic_string(start);
+        if (new_ds == NULL || !add_to_dynamic_string_list(list, new_ds)) 
+        {
+            if (new_ds) free_dynamic_string(new_ds);
+            free_dynamic_string_list(list);
+            return NULL;
+        }
+    }
+    return list;
+}
+
+Dynamic_String* list_to_dynamic_string(Dynamic_String_List* list, const wchar_t delimiter)
+{
+    if (list == NULL || list->count == 0) return NULL;
+    size_t total_size = 0;
+    for (size_t i = 0; i < list->count; i++) 
+    {
+        total_size += wcslen(list->strings[i]->data);
+    }
+    total_size += list->count - 1;
+    Dynamic_String* result = calloc(1, sizeof(Dynamic_String));
+    if (result == NULL) return NULL;
+    result->data = malloc((total_size + 1) * sizeof(wchar_t));
+    if (result->data == NULL) 
+    {
+        free(result);
+        return NULL;
+    }
+    wchar_t* current = result->data;
+    for (size_t i = 0; i < list->count; i++) 
+    {
+        if (i > 0) 
+        {
+            *current = delimiter;
+            current++;
+        }
+        size_t len = wcslen(list->strings[i]->data);
+        wmemcpy(current, list->strings[i]->data, len);
+        current += len;
+    }
+    *current = L'\0';
+    result->size = total_size + 1;
+    return result;
+}
