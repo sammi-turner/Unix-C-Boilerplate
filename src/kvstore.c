@@ -1,5 +1,7 @@
 #include "interface.h"
 
+/* Key value stores */
+
 bool is_sqlite_installed()
 {
     char command[] = "sqlite3 --version 2>/dev/null";

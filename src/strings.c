@@ -1,6 +1,6 @@
 #include "interface.h"
 
-/* string helper functions */
+/* String helper functions */
 
 bool compare_optimized(const char *str1, const char *str2) 
 {

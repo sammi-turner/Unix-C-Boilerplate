@@ -1,6 +1,6 @@
 #include "interface.h"
 
-/* dynamic string list type */
+/* Dynamic string list type */
 
 Dynamic_String_List* init_dynamic_string_list(size_t initial_capacity) 
 {

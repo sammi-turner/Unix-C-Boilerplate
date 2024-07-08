@@ -95,6 +95,23 @@ void sort_dynamic_string_list(Dynamic_String_List *list);
 Dynamic_String_List* dynamic_string_to_list(Dynamic_String* ds, const wchar_t delimiter);
 Dynamic_String* list_to_dynamic_string(Dynamic_String_List* list, const wchar_t delimiter);
 
+/* rational.c */
+
+typedef struct Rational
+{
+    int numerator;
+    int denominator;
+} Rational;
+
+int gcd(int a, int b);
+void print_rational(Rational r);
+bool create_rational(int numerator, int denominator, Rational *result);
+bool add_rationals(Rational a, Rational b, Rational *result);
+bool subtract_rationals(Rational a, Rational b, Rational *result);
+bool multiply_rationals(Rational a, Rational b, Rational *result);
+bool divide_rationals(Rational a, Rational b, Rational *result);
+bool simplify_rational(Rational *r);
+
 /* terminal.c */
 
 void enable_single_character_input();
