@@ -21,6 +21,8 @@ The project has the following directory structure:
   - `dynamic.c`: functions that use the dynamic string type.
   - `list.c`: functions that use the dynamic string list type.
   - `files.c`: functions handling file I/O.
+  - `kvstore.c`: functions for a key-value data store using sqlite3.
+  - `rational.c`: functions that use a rational number type.
   - `terminal.c`: functions handling terminal I/O.
   - `strings.c`: string helper functions.
   - `misc.c`: miscellaneous helper functions. 
