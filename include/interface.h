@@ -103,9 +103,9 @@ typedef struct Rational
     int denominator;
 } Rational;
 
-int gcd(int a, int b);
+int greatest_common_divisor(int a, int b);
 void print_rational(Rational r);
-bool create_rational(int numerator, int denominator, Rational *result);
+bool init_rational(int numerator, int denominator, Rational *result);
 bool add_rationals(Rational a, Rational b, Rational *result);
 bool subtract_rationals(Rational a, Rational b, Rational *result);
 bool multiply_rationals(Rational a, Rational b, Rational *result);

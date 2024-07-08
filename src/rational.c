@@ -2,10 +2,10 @@
 
 /* Rational number type */
 
-int gcd(int a, int b)
+int greatest_common_divisor(int a, int b)
 {
     if (b == 0) return a;
-    return gcd(b, a % b);
+    return greatest_common_divisor(b, a % b);
 }
 
 void print_rational(Rational r)
@@ -14,7 +14,7 @@ void print_rational(Rational r)
     else printf("Invalid rational");
 }
 
-bool create_rational(int numerator, int denominator, Rational *result)
+bool init_rational(int numerator, int denominator, Rational *result)
 {
     if (denominator == 0) return false;
     result->numerator = numerator;
@@ -57,7 +57,7 @@ bool divide_rationals(Rational a, Rational b, Rational *result)
 bool simplify_rational(Rational *r)
 {
     if (r->denominator == 0) return false;
-    int common = gcd(abs(r->numerator), abs(r->denominator));
+    int common = greatest_common_divisor(abs(r->numerator), abs(r->denominator));
     r->numerator /= common;
     r->denominator /= common;
     if (r->denominator < 0)

@@ -5,7 +5,7 @@ int main()
     Rational a, b, result;
     bool success;
 
-    success = create_rational(1, 2, &a);
+    success = init_rational(1, 2, &a);
     if (success)
     {
         printf("a = ");
@@ -13,7 +13,7 @@ int main()
         printf("\n");
     }
 
-    success = create_rational(3, 4, &b);
+    success = init_rational(3, 4, &b);
     if (success)
     {
         printf("b = ");
@@ -21,7 +21,7 @@ int main()
         printf("\n");
     }
 
-    success = create_rational(1, 0, &result);
+    success = init_rational(1, 0, &result);
     if (!success)
     {
         printf("Failed to create invalid rational\n");
@@ -64,7 +64,7 @@ int main()
 
     // Test error cases
     Rational zero;
-    create_rational(0, 1, &zero);
+    init_rational(0, 1, &zero);
 
     if (!add_rationals(a, zero, &result))
     {
